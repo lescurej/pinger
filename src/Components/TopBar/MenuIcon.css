@@ -1,0 +1,10 @@
+.menuButton{
+  width: 35px;
+  height: 5px;
+  margin: 6px 5px;
+  background-color: #8e8e8e;
+}
+
+.active{
+  background-color: #ffffff;
+}

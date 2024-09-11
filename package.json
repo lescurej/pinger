@@ -1,0 +1,36 @@
+{
+  "name": "pinger",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev2": "pnpm tauri dev",
+    "build": "tsc && vite build",
+    "build2": "pnpm tauri build",
+    "preview": "vite preview",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@szhsin/react-menu": "^4.2.2",
+    "@tauri-apps/api": "2.0.0-rc.4",
+    "@tauri-apps/plugin-dialog": "^2.0.0-rc",
+    "@tauri-apps/plugin-fs": "^2.0.0-rc",
+    "@tauri-apps/plugin-process": "^2.0.0-rc",
+    "@tauri-apps/plugin-shell": "^2.0.0-rc",
+    "@tauri-apps/plugin-store": "2.0.0-rc.1",
+    "immer": "^10.1.1",
+    "nanoid": "^5.0.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zustand": "^4.5.5"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "2.0.0-rc.13",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.2.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.3.1"
+  }
+}
