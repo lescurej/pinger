@@ -1,20 +1,36 @@
-.row{
-    width: 100%;
-    height: 40px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0px 20px 0px 20px;
-    box-sizing: border-box;
-    border-color: "white";
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+.row {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 20px 0px 20px;
+  box-sizing: border-box;
+  border-color: "white";
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
 }
 
-.inactive{
-    background-color: rgba(255, 0, 0, 0.1);
+.row > div {
+  display: flex;
+  align-items: center;
 }
 
-.icon{
-    margin-left: 10px;
-    margin-right: 10px;
+.inactive {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.icon {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.status-dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 1.5em;
 }

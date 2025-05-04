@@ -10,17 +10,17 @@ const InstanceRow = ({ uuid }: { uuid: string }) => {
   const { active, lastseen } = usePing(uuid);
 
   return (
-    <div className={`row${active ? "" : " inactive"}`}>
-      <div style={{ width: "auto" }}>
+    <div className="row">
+      <div style={{ flex: 2 }}>
         <LabelInput uuid={uuid} />
       </div>
-      <div style={{ width: "150px" }}>
+      <div style={{ flex: 2 }}>
         <IpInput uuid={uuid} />
       </div>
-      <div style={{ width: "20px" }}>
+      <div className="status-dot" style={{ width: 32 }}>
         <StatusDot active={active} />
       </div>
-      <div style={{ width: "200px", fontSize: "small", marginTop: "2px" }}>
+      <div style={{ flex: 3, fontSize: "small" }}>
         <LastSeen lastseen={lastseen} />
       </div>
       <div>

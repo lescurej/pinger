@@ -14,7 +14,22 @@ const AddInstanceModal = ({ onClose }: { onClose: () => void }) => {
       aria-modal="true"
       role="dialog"
     >
-      <div className="modal" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="modal"
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          minWidth: 440,
+          maxWidth: 600,
+          margin: "40px auto",
+          background: "#232323",
+          color: "#fff",
+          borderRadius: 16,
+          boxShadow: "0 8px 40px #000a",
+          padding: 40,
+          fontSize: "1.08em",
+          fontFamily: "Inter, Avenir, Helvetica, Arial, sans-serif",
+        }}
+      >
         <button className="close-btn" aria-label="Close" onClick={onClose}>
           <FaTimes size={20} />
         </button>
