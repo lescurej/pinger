@@ -38,7 +38,7 @@ const storage: StateStorage = {
 
 type State = {
   state: TDefaultState;
-  addNewInstance: () => void;
+  addNewInstance: () => string;
   removeInstance: (uuid: string) => void;
   changeLabel: (uuid: string, value: string) => void;
   changeIP: (uuid: string, value: string) => void;
@@ -52,11 +52,13 @@ export const usePingerStore = create<State>()(
   persist(
     immer((set, get) => ({
       state: { ...defaultState },
-      addNewInstance: () =>
+      addNewInstance: () => {
+        const uuid = nanoid();
         set(({ state }) => {
-          const uuid = nanoid();
           state.instances[uuid] = { ...defaultPingInstance };
-        }),
+        });
+        return uuid;
+      },
       removeInstance: (uuid: string) => {
         if (uuid in get().state.instances) {
           set(({ state }) => {

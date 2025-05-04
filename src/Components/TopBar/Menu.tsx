@@ -64,7 +64,7 @@ function MainMenu() {
       </SubMenu>
       <MenuDivider />
       <MenuItem style={{ color: "red" }} onClick={removeAll}>
-        Remove all
+        Clear all
       </MenuItem>
       <MenuDivider />
       <MenuItem onClick={onExitClick}>Quit</MenuItem>

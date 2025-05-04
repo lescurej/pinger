@@ -46,10 +46,9 @@ const useImport = () => {
       const filecontent = await fs.readTextFile(filePath as string);
       const jsoncontent = checkFileContent(filecontent);
       usePingerStore.getState().import(jsoncontent);
-      await dialog.message("Importation réussie !");
     } catch (e) {
       await dialog.message(
-        "Erreur lors de l'importation : " + (e instanceof Error ? e.message : e)
+        "Import error: " + (e instanceof Error ? e.message : e)
       );
     }
   };
