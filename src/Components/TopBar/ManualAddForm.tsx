@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { usePingerStore } from "../../store";
 
 const ManualAddForm = ({
@@ -13,15 +13,23 @@ const ManualAddForm = ({
   const addNewInstance = usePingerStore.getState().addNewInstance;
   const changeIP = usePingerStore.getState().changeIP;
   const changeLabel = usePingerStore.getState().changeLabel;
+  const state = usePingerStore.getState().state;
+  const ipRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    ipRef.current?.focus();
+  }, []);
 
   const handleManualAdd = () => {
     if (!manualIP.trim() || !manualLabel.trim()) {
-      onError("IP et label requis");
+      onError("IP and label are required");
       return;
     }
-    const uuid = addNewInstance();
-    changeIP(uuid, manualIP.trim());
-    changeLabel(uuid, manualLabel.trim());
+    addNewInstance();
+    const uuids = Object.keys(state.instances);
+    const lastUuid = uuids[uuids.length - 1];
+    changeIP(lastUuid, manualIP.trim());
+    changeLabel(lastUuid, manualLabel.trim());
     setManualIP("");
     setManualLabel("");
     onError("");
@@ -29,23 +37,41 @@ const ManualAddForm = ({
   };
 
   return (
-    <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
-      <input
-        type="text"
-        placeholder="IP"
-        value={manualIP}
-        onChange={(e) => setManualIP(e.target.value)}
-        style={{ flex: 1 }}
-      />
-      <input
-        type="text"
-        placeholder="Label"
-        value={manualLabel}
-        onChange={(e) => setManualLabel(e.target.value)}
-        style={{ flex: 1 }}
-      />
-      <button onClick={handleManualAdd}>Ajouter</button>
-    </div>
+    <form
+      className="vertical-form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleManualAdd();
+      }}
+    >
+      <label>
+        IP
+        <input
+          ref={ipRef}
+          type="text"
+          placeholder="Enter IP address"
+          value={manualIP}
+          onChange={(e) => setManualIP(e.target.value)}
+        />
+      </label>
+      <label>
+        Label
+        <input
+          type="text"
+          placeholder="Enter label"
+          value={manualLabel}
+          onChange={(e) => setManualLabel(e.target.value)}
+        />
+      </label>
+      <button
+        type="submit"
+        className="btn-primary"
+        disabled={!manualIP.trim() || !manualLabel.trim()}
+        style={{ width: "100%", marginTop: 8 }}
+      >
+        Add
+      </button>
+    </form>
   );
 };
 
