@@ -20,6 +20,7 @@ import useExport from "./useExport";
 
 const changePingRate = usePingerStore.getState().changePingRate;
 const removeAll = usePingerStore.getState().removeAll;
+const showOnlyInactive = usePingerStore.getState().showOnlyInactive;
 
 function MainMenu() {
   const onExitClick = useCallback(() => {
@@ -30,6 +31,14 @@ function MainMenu() {
   const onExportClick = useExport();
 
   const pingRate = usePingerStore(({ state }) => state.pingRateTime);
+
+  const isShowOnlyInactive = usePingerStore(
+    ({ state }) => state.showOnlyInactive
+  );
+
+  const handleShowOnlyInactive = () => {
+    showOnlyInactive(!isShowOnlyInactive);
+  };
 
   return (
     <Menu
@@ -45,6 +54,9 @@ function MainMenu() {
     >
       <MenuItem onClick={onImportClick}>Import</MenuItem>
       <MenuItem onClick={onExportClick}>Export</MenuItem>
+      <MenuItem onClick={handleShowOnlyInactive}>
+        Show only inactive {isShowOnlyInactive ? "✓" : ""}
+      </MenuItem>
       <MenuDivider />
       <SubMenu label="Ping frequency">
         <MenuRadioGroup

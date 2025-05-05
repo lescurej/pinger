@@ -1,36 +1,105 @@
-.row {
-  width: 100%;
-  height: 40px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 0px 20px 0px 20px;
-  box-sizing: border-box;
-  border-color: "white";
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  align-items: center;
-  gap: 12px;
-  min-height: 48px;
-}
-
-.row > div {
+.instance-row {
   display: flex;
   align-items: center;
+  padding: 0rem 1.1rem;
+  background: #23242a;
+  font-size: 0.95em;
+  border-bottom: 1px solid #333;
+  min-height: 36px;
+  gap: 0;
+  transition: background 0.2s;
 }
 
-.inactive {
-  background-color: rgba(255, 0, 0, 0.1);
+.instance-row.active {
+  background: rgba(0, 180, 0, 0.1);
+}
+.instance-row.inactive {
+  background: rgba(180, 0, 0, 0.1);
 }
 
-.icon {
-  margin-left: 10px;
-  margin-right: 10px;
+.label-input,
+.ip-input {
+  display: flex;
+  align-items: center;
+}
+
+.row-input input {
+  height: 26px;
+  font-size: 0.97em;
+  background: #23242a24;
+  color: #eee;
+  border: 1px solid #444444;
+  padding: 0 0.7rem;
+  margin: 0 0.1rem;
+  border-radius: 4px;
+}
+
+.ip-input input {
+  width: 120px;
+  min-width: 120px;
+  max-width: 120px;
+  text-align: left;
+}
+
+.last-seen {
+  flex: 1 1 120px;
+  margin: 0 1.6rem;
+  color: #bbb;
+  white-space: nowrap;
+  margin-right: 7rem;
+  font-size: 0.8em;
+  text-align: left;
+  min-width: 120px;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }
 
 .status-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  font-size: 1.5em;
+  margin: 0;
+  margin-bottom: 2px;
+  flex-shrink: 0;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 1.3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  width: 20px;
+  transition: color 0.2s;
+  margin-left: 15px;
+  flex-shrink: 0;
+  box-shadow: none;
+  outline: none;
+  padding: 0;
+}
+.delete-btn:hover {
+  color: #ff5555;
+  box-shadow: none;
+  outline: none;
+}
+
+.delete-btn svg {
+  display: block;
+  margin: 0 auto;
+  width: 20px;
+  height: 20px;
+  min-width: 16px;
+  min-height: 16px;
+  max-width: 24px;
+  max-height: 24px;
+  fill: currentColor;
 }

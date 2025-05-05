@@ -14,11 +14,13 @@ export type TPingInstance = typeof defaultPingInstance;
 export type TDefaultState = {
   pingRateTime: number;
   instances: { [uuid: string]: TPingInstance };
+  showOnlyInactive: boolean;
 };
 
 const defaultState = {
   pingRateTime: 0.5,
   instances: {},
+  showOnlyInactive: false,
 } as TDefaultState;
 
 const store = new Store("coucou.dat");
@@ -38,7 +40,7 @@ const storage: StateStorage = {
 
 type State = {
   state: TDefaultState;
-  addNewInstance: () => string;
+  addNewInstance: (ip: string, label: string) => string;
   removeInstance: (uuid: string) => void;
   changeLabel: (uuid: string, value: string) => void;
   changeIP: (uuid: string, value: string) => void;
@@ -46,16 +48,18 @@ type State = {
   import: (newState: TDefaultState) => void;
   export: () => TDefaultState;
   removeAll: () => void;
+  showOnlyInactive: (value: boolean) => void;
 };
 
 export const usePingerStore = create<State>()(
   persist(
     immer((set, get) => ({
       state: { ...defaultState },
-      addNewInstance: () => {
+      addNewInstance: (ip: string, label: string) => {
         const uuid = nanoid();
         set(({ state }) => {
-          state.instances[uuid] = { ...defaultPingInstance };
+          const newInstance = { ...defaultPingInstance, ip, label };
+          state.instances[uuid] = { ...newInstance };
         });
         return uuid;
       },
@@ -97,6 +101,10 @@ export const usePingerStore = create<State>()(
       changePingRate: (value: number) =>
         set(({ state }) => {
           state.pingRateTime = value;
+        }),
+      showOnlyInactive: (value: boolean) =>
+        set(({ state }) => {
+          state.showOnlyInactive = value;
         }),
     })),
     {

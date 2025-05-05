@@ -10,9 +10,6 @@ const CSVAddForm = ({
 }) => {
   const [csvText, setCsvText] = useState("");
   const addNewInstance = usePingerStore.getState().addNewInstance;
-  const changeIP = usePingerStore.getState().changeIP;
-  const changeLabel = usePingerStore.getState().changeLabel;
-  const state = usePingerStore.getState().state;
 
   const handleCSVAdd = () => {
     const lines = csvText.split(/\r?\n/).filter(Boolean);
@@ -21,11 +18,7 @@ const CSVAddForm = ({
       const [ip, ...labelParts] = line.split(",");
       const label = labelParts.join(",").trim();
       if (ip && label) {
-        addNewInstance();
-        const uuids = Object.keys(state.instances);
-        const lastUuid = uuids[uuids.length - 1];
-        changeIP(lastUuid, ip.trim());
-        changeLabel(lastUuid, label);
+        addNewInstance(ip.trim(), label);
         added++;
       }
     }
@@ -49,13 +42,18 @@ const CSVAddForm = ({
       <label>
         List (ip,label)
         <textarea
+          className="input"
           placeholder={"Paste here several lines in the format:\nip,label"}
           value={csvText}
           onChange={(e) => setCsvText(e.target.value)}
           rows={5}
         />
       </label>
-      <button type="submit" className="btn-success" disabled={!csvText.trim()}>
+      <button
+        type="submit"
+        className="btn btn-success"
+        disabled={!csvText.trim()}
+      >
         Import
       </button>
     </form>

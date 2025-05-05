@@ -38,6 +38,7 @@ function TopBar() {
         </h1>
       </div>
       <AddButton />
+
       <MainMenu />
     </div>
   );

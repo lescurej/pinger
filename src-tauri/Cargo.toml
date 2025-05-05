@@ -19,6 +19,8 @@ tauri-plugin-fs = "2.0.0-rc"
 tauri-plugin-dialog = "2.0.0-rc"
 tauri-plugin-shell = "2.0.0-rc"
 tauri-plugin-process = "2.0.0-rc"
+tokio = { version = "1", features = ["full"] }
+getifaddrs = "0.1"
 
 [features]
 # This feature is used for production builds or when a dev server is not specified, DO NOT REMOVE!!

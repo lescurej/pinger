@@ -6,6 +6,8 @@ const usePing = (uuid: string) => {
   const [active, setActive] = useState(false);
   const [lastseen, setLastSeen] = useState<Date | null>(null);
 
+  const [pingValue, setPingValue] = useState<number | null>(null);
+
   const rate = usePingerStore(({ state }) => state.pingRateTime);
   const ip = usePingerStore(({ state }) => state.instances[uuid].ip);
 
@@ -16,6 +18,7 @@ const usePing = (uuid: string) => {
     ]).execute();
     const { code } = result;
     if (code === 0) {
+      setPingValue(parsePingMs(result.stdout));
       setActive(true);
       setLastSeen(new Date());
     } else {
@@ -34,7 +37,17 @@ const usePing = (uuid: string) => {
     };
   }, [pingFn, rate]);
 
-  return { active, lastseen };
+  return { active, lastseen, pingValue };
 };
+
+function parsePingMs(pingOutput: string): number | null {
+  // Cherche une ligne contenant "time=xx.x ms"
+  const match = pingOutput.match(/time=([0-9.]+) ms/);
+  if (match) {
+    return parseFloat(match[1]);
+  }
+  // Si pas de match, retourne null (pas de réponse)
+  return null;
+}
 
 export default usePing;

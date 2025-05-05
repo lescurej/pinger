@@ -1,4 +1,24 @@
 :root {
+  /* Couleurs principales */
+  --background: #181c20;
+  --surface: #23272f;
+  --primary: #4f8cff;
+  --primary-hover: #3570d4;
+  --danger: #ff4f4f;
+  --text: #f5f6fa;
+  --text-secondary: #b0b8c1;
+  --border: #2c313a;
+  --input-bg: #23272f;
+  --input-border: #353a45;
+  --input-focus: #4f8cff;
+  --modal-bg: #23272f;
+  --overlay: rgba(0, 0, 0, 0.5);
+
+  /* Typographie */
+  --font: "Inter", "Segoe UI", Arial, sans-serif;
+  --radius: 8px;
+  --shadow: 0 4px 32px rgba(0, 0, 0, 0.25);
+
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
@@ -15,6 +35,14 @@
   width: 100%;
   height: 100%;
   margin: 0;
+}
+
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family: var(--font);
+  margin: 0;
+  padding: 0;
 }
 
 #root {
@@ -289,4 +317,118 @@ label {
 
 textarea {
   resize: vertical;
+}
+
+/* Boutons */
+.btn {
+  background: var(--primary);
+  color: var(--text);
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.6em 1.4em;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: var(--font);
+  margin: 0.2em;
+  box-shadow: none;
+}
+.btn:hover,
+.btn:focus {
+  background: var(--primary-hover);
+  outline: none;
+}
+.btn-danger {
+  background: var(--danger);
+}
+.btn-close {
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  float: right;
+}
+
+/* Inputs et selects */
+input,
+select,
+textarea {
+  background: var(--input-bg);
+  color: var(--text);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius);
+  padding: 0.5em 1em;
+  font-size: 1em;
+  font-family: var(--font);
+  margin: 0.2em 0;
+  transition: border 0.2s;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
+
+/* Modale */
+.modal,
+.network-scanner-modal {
+  position: fixed;
+  top: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--modal-bg);
+  border: 1px solid var(--border);
+  z-index: 1000;
+  padding: 2em 2.5em;
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  min-width: 320px;
+  max-width: 90vw;
+  color: var(--text);
+}
+.network-scanner-overlay,
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--overlay);
+  z-index: 999;
+}
+
+/* Titres */
+h1,
+h2,
+h3,
+h4 {
+  color: var(--text);
+  font-family: var(--font);
+  font-weight: 600;
+  margin-top: 0;
+}
+h1 {
+  font-size: 2.2em;
+}
+h2 {
+  font-size: 1.5em;
+}
+h3 {
+  font-size: 1.2em;
+}
+
+/* Listes */
+ul {
+  padding-left: 1.2em;
+}
+li {
+  margin-bottom: 0.5em;
+}
+
+/* Pour les petits textes secondaires */
+.text-secondary {
+  color: var(--text-secondary);
+  font-size: 0.95em;
 }

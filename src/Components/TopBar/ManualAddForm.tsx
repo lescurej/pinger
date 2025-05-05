@@ -25,11 +25,7 @@ const ManualAddForm = ({
       onError("IP and label are required");
       return;
     }
-    addNewInstance();
-    const uuids = Object.keys(state.instances);
-    const lastUuid = uuids[uuids.length - 1];
-    changeIP(lastUuid, manualIP.trim());
-    changeLabel(lastUuid, manualLabel.trim());
+    addNewInstance(manualIP.trim(), manualLabel.trim());
     setManualIP("");
     setManualLabel("");
     onError("");
@@ -65,9 +61,8 @@ const ManualAddForm = ({
       </label>
       <button
         type="submit"
-        className="btn-primary"
+        className="btn btn-primary"
         disabled={!manualIP.trim() || !manualLabel.trim()}
-        style={{ width: "100%", marginTop: 8 }}
       >
         Add
       </button>
