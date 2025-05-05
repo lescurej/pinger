@@ -11,9 +11,6 @@ const ManualAddForm = ({
   const [manualIP, setManualIP] = useState("");
   const [manualLabel, setManualLabel] = useState("");
   const addNewInstance = usePingerStore.getState().addNewInstance;
-  const changeIP = usePingerStore.getState().changeIP;
-  const changeLabel = usePingerStore.getState().changeLabel;
-  const state = usePingerStore.getState().state;
   const ipRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
